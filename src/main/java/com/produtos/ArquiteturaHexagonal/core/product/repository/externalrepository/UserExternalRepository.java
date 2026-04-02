@@ -1,6 +1,6 @@
 package com.produtos.ArquiteturaHexagonal.core.product.repository.externalrepository;
 
-import com.produtos.ArquiteturaHexagonal.core.shared.DTO.UserDto;
+import com.produtos.ArquiteturaHexagonal.core.shared.DTO.external.UserDto;
 
 import java.util.Optional;
 

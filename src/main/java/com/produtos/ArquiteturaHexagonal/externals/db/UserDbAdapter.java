@@ -1,7 +1,7 @@
 package com.produtos.ArquiteturaHexagonal.externals.db;
 
 import com.produtos.ArquiteturaHexagonal.core.product.repository.externalrepository.UserExternalRepository;
-import com.produtos.ArquiteturaHexagonal.core.shared.DTO.UserDto;
+import com.produtos.ArquiteturaHexagonal.core.shared.DTO.external.UserDto;
 import com.produtos.ArquiteturaHexagonal.externals.interfaces.IUserExternalApi;
 import org.springframework.stereotype.Component;
 

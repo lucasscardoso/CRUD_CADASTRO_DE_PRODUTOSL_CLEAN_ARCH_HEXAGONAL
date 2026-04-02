@@ -3,8 +3,10 @@ package com.produtos.ArquiteturaHexagonal.core.product.service;
 import com.produtos.ArquiteturaHexagonal.core.product.entity.Produto;
 import com.produtos.ArquiteturaHexagonal.core.product.repository.externalrepository.UserExternalRepository;
 import com.produtos.ArquiteturaHexagonal.core.product.repository.product.ProductRepository;
-import com.produtos.ArquiteturaHexagonal.core.shared.DTO.SaveProductClient;
-import com.produtos.ArquiteturaHexagonal.core.shared.DTO.UserDto;
+import com.produtos.ArquiteturaHexagonal.core.shared.DTO.product.SaveProductClient;
+import com.produtos.ArquiteturaHexagonal.core.shared.DTO.external.UserDto;
+import com.produtos.ArquiteturaHexagonal.core.shared.exceptions.InternalErrorException;
+import com.produtos.ArquiteturaHexagonal.core.shared.exceptions.ProductNotSaveClientNotFoundException;
 import com.produtos.ArquiteturaHexagonal.core.shared.usecase.IProductUseCase;
 
 
@@ -23,11 +25,12 @@ public class SalvarProduto implements IProductUseCase<SaveProductClient, Produto
     @Override
     public Produto executar(SaveProductClient entrada) {
 
+        try{
         Optional<UserDto> usuario = userExternalRepository.findById(entrada.id());
-        if(usuario.isEmpty()){
-            throw new RuntimeException("cliente nao encontrado");
-        }
 
+        if(usuario.isEmpty()){
+              throw new ProductNotSaveClientNotFoundException("cliente nao encontrado com id: " + entrada.id());
+              }
 
         Produto novoProduto = new Produto();
         novoProduto.setClienteId(usuario.get().id());
@@ -36,5 +39,8 @@ public class SalvarProduto implements IProductUseCase<SaveProductClient, Produto
         novoProduto.setQuantidade(entrada.quantidade());
 
         return prodRepo.salvar(novoProduto);
+        } catch (InternalErrorException e) {
+            throw new InternalErrorException("Erro Interno,contate o Adminstrador (validar erro productside/Externalside)");
+        }
     }
 }
