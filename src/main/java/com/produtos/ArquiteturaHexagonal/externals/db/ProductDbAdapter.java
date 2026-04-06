@@ -7,6 +7,8 @@ import com.produtos.ArquiteturaHexagonal.externals.interfaces.IUserExternalApi;
 import com.produtos.ArquiteturaHexagonal.externals.repository.SpringDataProductRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class ProductDbAdapter implements ProductRepository {
 
@@ -27,7 +29,12 @@ public class ProductDbAdapter implements ProductRepository {
     }
 
     @Override
-    public Produto buscar(Produto id) {
-        return null;
+    public Optional<Produto> buscaPorId(Long id) {
+
+       Optional<Produto> produto =  springDataProductRepository.findById(id).map(entity -> entity.toDomain());
+
+        return produto;
     }
+
+
 }

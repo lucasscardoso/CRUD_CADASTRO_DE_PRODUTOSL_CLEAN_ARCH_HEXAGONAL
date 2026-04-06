@@ -26,6 +26,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/salvar/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/buscar/**").permitAll()
                         .anyRequest().permitAll()
                 )
                 //.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
