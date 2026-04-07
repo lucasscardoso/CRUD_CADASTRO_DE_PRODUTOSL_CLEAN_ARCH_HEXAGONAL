@@ -10,4 +10,8 @@ public interface SpringDataProductRepository extends JpaRepository<ProdutoEntity
 
     @Override
     Optional<ProdutoEntity> findById(Long aLong);
+
+    @Override
+    void deleteById(Long aLong);
+
 }

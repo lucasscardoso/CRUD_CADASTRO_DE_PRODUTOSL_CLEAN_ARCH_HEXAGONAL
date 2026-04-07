@@ -27,8 +27,6 @@ public class SecurityFilter extends OncePerRequestFilter {
         if (token != null && validateToken.isTokenValido(token)) {
             String login = validateToken.getSubject(token);
 
-            // Como Produtos não tem banco de usuários, criamos um objeto de autenticação simples
-            // O importante é o Spring saber que NÃO é um usuário anônimo
             var authentication = new UsernamePasswordAuthenticationToken(login, null, Collections.emptyList());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }

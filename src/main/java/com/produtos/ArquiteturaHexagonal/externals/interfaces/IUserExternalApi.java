@@ -12,5 +12,4 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface IUserExternalApi {
     @GetMapping("/usuarios/buscar/{id}")
     UserDto buscarUserPorId(@PathVariable("id") Long id);
-
 }

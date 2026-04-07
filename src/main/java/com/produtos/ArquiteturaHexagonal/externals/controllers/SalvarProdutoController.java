@@ -19,6 +19,7 @@ public class SalvarProdutoController {
     }
 
     @PostMapping("/{id}")
+
     public ResponseEntity<Produto> salvarProduto(@PathVariable Long id, @RequestBody Produto dadosProduto){
         SaveProductClient entrada = new SaveProductClient(id,dadosProduto.getNome(),dadosProduto.getPreco(),dadosProduto.getQuantidade());
         Produto prodSalvo = saveProductClientProduct.executar(entrada);

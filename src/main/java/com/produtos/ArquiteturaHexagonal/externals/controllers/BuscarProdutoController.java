@@ -22,7 +22,8 @@ public class BuscarProdutoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Produto> buscaProduto(@PathVariable Long id){
-        return productDbAdapter.buscaPorId(id).map(produto -> ResponseEntity.ok(produto)).orElse(ResponseEntity.notFound().build());
+        return productDbAdapter.buscaPorId(id).map(produto -> ResponseEntity.ok(produto))
+                .orElse(ResponseEntity.notFound().build());
 
     }
 }

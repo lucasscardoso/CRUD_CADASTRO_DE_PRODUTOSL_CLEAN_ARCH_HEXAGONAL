@@ -8,4 +8,6 @@ public interface ProductRepository {
 
     Produto salvar(Produto produto);
     Optional<Produto> buscaPorId(Long id);
+    void deletar(Long id);
+    Produto altera(Produto produto ,Long id);
 }
